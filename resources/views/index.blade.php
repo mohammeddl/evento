@@ -4,14 +4,15 @@
 @section('content')
 
 <div class="relative">
-    <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" class="object-cover w-full h-[82vh]" alt="" />
-    <p class="absolute bottom-2/3 left-1/4 text-center text-white text-3xl font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    <div class="absolute bottom-2/4 left-1/3  text-center">
-        <div class="absolute right-0 md:left-7 border-slate-500 px-2 pb-[2px] rounded-2xl text-center">
-            <p class="text-indigo-700 text-2xl font-semibold">capacity</p>
+    <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" class="object-cover object-center  w-full h-[82vh]" alt="" />
+    <p class="absolute top-28 left-[47%] py-2 px-2 bg-indigo-600 rounded-2xl uppercase text-white text-sm font-medium">category</p>
+    <p class="absolute bottom-[58%] left-1/4 text-center text-white text-3xl font-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <div class="absolute bottom-[44%] left-1/3 text-center">
+        <div class="absolute right-0 md:left-0 md:w-44 bg-white px-2 pb-[2px] rounded-2xl text-center">
+            <p class="text-indigo-700 text-1xl md:text-1xl py-2 font-semibold uppercase ">Learn more</p>
         </div>
-        <div class="absolute left-32 md:left-96  border-slate-400 px-2 pb-[2px] rounded-2xl text-center">
-            <p class="text-white text-2xl font-semibold">status</p>
+        <div class="absolute left-32 md:left-80 md:w-44 bg-indigo-600 px-2 pb-[2px] rounded-2xl text-center">
+            <p class="text-white text-1xl md:text-1xl py-2 font-semibold uppercase">Take a Ticket</p>
         </div>
     </div>
 </div>
