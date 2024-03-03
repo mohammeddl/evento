@@ -48,6 +48,7 @@
 
                                     <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
                                 </div>
+                                
                             <div class="relative flex items-center mt-8">
                                 <span class="absolute">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
