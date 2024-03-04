@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Organizer extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+    ];
+
+    public function organizer()
+    {
+        return $this->belongsTo(User::class,'id');
+    }
 }

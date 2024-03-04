@@ -21,6 +21,7 @@ class User extends Authenticatable
         'image',
         'name',
         'email',
+        'role',
         'password',
     ];
 
@@ -43,4 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function organizer()
+    {
+        return $this->hasOne(Organizer::class, 'id');
+    }
 }

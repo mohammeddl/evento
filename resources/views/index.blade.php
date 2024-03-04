@@ -28,4 +28,5 @@
 @include('components.filter')
 @include('components.card')
 @include('components.newsletter')
+@include('components.faq')
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Organizer;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -48,8 +49,16 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'image' => $imageName,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
+
+
+        if ($user->role == 'organizer') {
+            $userOrganizer = Organizer::create([
+                'id' => $user->id,
+            ]);
+        }
 
         event(new Registered($user));
 

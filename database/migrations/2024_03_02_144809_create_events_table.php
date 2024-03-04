@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('location');
-            $table->dateTime('date');
+            $table->date('date');
             $table->string('category');
             $table->integer('capacity');
             $table->string('status')->default('pending');

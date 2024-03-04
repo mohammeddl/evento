@@ -48,7 +48,18 @@
 
                                     <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
                                 </div>
-                                
+
+                                <div class="mt-6">
+                                    <h1 class="text-gray-500 dark:text-gray-300">Select type of account</h1>
+                                    <div class="mt-3 md:flex md:items-center md:-mx-2">
+                                        <select name="role" class="w-full px-6 py-3 text-indigo-500 border border-indigo-500 rounded-lg md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
+                                            <option value="user">User</option>
+                                            <option value="organizer">Company</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <x-input-error :messages="$errors->get('role')" class="mt-2" />
+
                             <div class="relative flex items-center mt-8">
                                 <span class="absolute">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
