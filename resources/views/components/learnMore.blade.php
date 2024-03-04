@@ -1,7 +1,7 @@
 <div class="relative">
     <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
-      <div class="relative sm:py-16 lg:py-0">
-        <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
+      <div class="relative sm:py-12 lg:py-0">
+        <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0  lg:w-screen">
           <div class="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl lg:right-72"></div>
           <svg class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12" width="404" height="392" fill="none" viewBox="0 0 404 392">
             <defs>
@@ -16,7 +16,7 @@
           <!-- Testimonial card-->
           <div class="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
             <img class="absolute inset-0 h-full w-full object-cover" src="{{asset('images/'. $item->image)}}" alt="">
-            <div class="absolute inset-0 bg-gray-700 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gray-100 mix-blend-multiply"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-gray-800 via-gray-700 opacity-90"></div>
             <div class="relative px-8">
               <blockquote class="mt-8">
@@ -43,7 +43,7 @@
             {{$item->title}}
           </h2>
           <div class="mt-6 text-gray-500 space-y-6">
-            <p class="text-lg h-60">
+            <p class="text-lg h-40">
               {{$item->description}}
             </p>
           </div>

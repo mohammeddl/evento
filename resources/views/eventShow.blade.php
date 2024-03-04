@@ -5,6 +5,6 @@
 
 
 @include('components.learnMore')
-@include('components.newsletter')
-@include('components.faq')
+
+
 @endsection
