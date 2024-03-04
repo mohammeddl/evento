@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[UserController::class,'index'])->name('index');
+Route::get('/', [UserController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,12 +33,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
+    Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
-
 });
 
-Route::get('/event/{id}',[EventController::class,'show'])->name('event.show');
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
