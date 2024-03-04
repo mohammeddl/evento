@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
-    Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
+    Route::patch('/events/{id}', [EventController::class, 'update'])->name('event.update');
+    Route::get('/event/{id}/modify', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
+    Route::post('/reserver', [ReservationController::class, 'store'])->name('reserver');
 });
 
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -45,9 +46,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        return view('modifyEvent',['item'=>$event]);
     }
 
     /**
@@ -55,7 +57,41 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        
+        $request->validate([
+            'image' => ['required'],
+            'title' => ['required'],
+            'description' => ['required'],
+            'location' => ['required'],
+            'date' => ['required'],
+            'capacity' => ['required'],
+
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = '';
+        }
+
+        $user = Auth::user()->organizer->id;
+        $event = Event::findOrFail($user);
+        $event->updated([
+            'image' => $imageName,
+            'title' => $request->title,
+            'description' => $request->description,
+            'location' => $request->location,
+            'date' => $request->date,
+            'category' => 'yes',
+            'capacity' => $request->capacity,
+            'organizer_id' => $user,
+            'status' => $request->status,
+        ]);
+
+        return to_route('dashboard.user')->with('success', 'Your event has been add successfully.');
+
+
     }
 
     /**

@@ -25,7 +25,14 @@
           <p class="mb-2 text-gray-700">
             {{$item->description}}
           </p>
-          <a href="{{route('event.show',[$item->id])}}" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Learn more</a>
+          <div class="flex justify-between">
+              <a href="{{route('event.show',[$item->id])}}" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Learn more</a>
+                <form action="{{route('reserver')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="idEvent" value="{{$item->id}}">
+                    <button>reserver</button>
+                </form>
+          </div>
         </div>
       </div>
       @endforeach
