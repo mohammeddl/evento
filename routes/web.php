@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/create', function () {
-    return view('auth.create');
-});
-Route::get('/test', function () {
-    return view('index');
-});
 
+Route::get('/',[UserController::class,'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,9 +33,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
-    Route::post('/event', [UserController::class, 'store'])->name('event.store');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
+
 });
+
+Route::get('/event/{id}',[EventController::class,'show'])->name('event.show');
 
 
 

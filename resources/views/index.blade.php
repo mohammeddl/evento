@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <div class="relative">
     <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" class="object-cover object-center  w-full h-[82vh]" alt="" />
     <p class="absolute top-28 left-[47%] py-2 px-2 bg-indigo-600 rounded-2xl uppercase text-white text-sm font-medium">category</p>
