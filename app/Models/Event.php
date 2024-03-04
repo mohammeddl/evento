@@ -19,4 +19,8 @@ class Event extends Model
         'status',
         'organizer_id',
     ];
+
+    public function event(){
+        return $this->belongsTo(Organizer::class,'organizer_id');
+    }
 }

@@ -50,6 +50,13 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @if(Auth::user()->role == 'organizer')
+                <span class="inline-block relative mx-4">
+                    <img class="h-10 w-10 rounded-3xl" src="{{asset('images/'.Auth::user()->image )}}" alt="">
+                    <span class="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full ring-2 ring-white bg-green-400"></span>
+                  </span>
+                  @else
+                  @endif
             </div>
 
             <!-- Hamburger -->
