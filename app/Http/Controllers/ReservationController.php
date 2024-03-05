@@ -36,16 +36,20 @@ class ReservationController extends Controller
             ->where('status', 'pending')
             ->first();
         $user = Auth::user()->id;
-        // dd($eventexe);
         if ($eventexe) {
-
             $reservation = Reservation::create([
                 'event_id' => $idEvent,
                 'user_id' => $user,
                 'status' => 'pending',
             ]);
-
-            return to_route('dashboard.user')->with('success', 'Your event has been add successfully.');
+            return to_route('dashboard.user')->with('success', 'Your reservation event has been pending.');
+        } else {
+            $reservation = Reservation::create([
+                'event_id' => $idEvent,
+                'user_id' => $user,
+                'status' => 'true',
+            ]);
+            return to_route('dashboard.user')->with('success', 'Your reservation event has been successfully.');
         }
     }
 

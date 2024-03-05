@@ -26,6 +26,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/test', function () {
+    return view('dashboardAdmin');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -34,8 +38,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
-    Route::patch('/events/{id}', [EventController::class, 'update'])->name('event.update');
-    Route::get('/event/{id}/modify', [EventController::class, 'edit'])->name('event.edit');
+    Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
+    Route::get('/events/{id}', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
     Route::post('/reserver', [ReservationController::class, 'store'])->name('reserver');
 });

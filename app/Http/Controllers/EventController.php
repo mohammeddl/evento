@@ -39,8 +39,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        return view('eventShow',['item'=>$event]);
-
+        return view('eventShow', ['item' => $event]);
     }
 
     /**
@@ -49,7 +48,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::findOrFail($id);
-        return view('modifyEvent',['item'=>$event]);
+        return view('modifyEvent', ['item' => $event]);
     }
 
     /**
@@ -57,6 +56,7 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+
         $request->validate([
             'image' => ['required'],
             'title' => ['required'],
@@ -64,7 +64,6 @@ class EventController extends Controller
             'location' => ['required'],
             'date' => ['required'],
             'capacity' => ['required'],
-
         ]);
 
         if ($request->hasFile('image')) {
@@ -77,7 +76,7 @@ class EventController extends Controller
 
         $user = Auth::user()->organizer->id;
         $event = Event::findOrFail($user);
-        $event->updated([
+        $event->update([
             'image' => $imageName,
             'title' => $request->title,
             'description' => $request->description,
@@ -90,8 +89,6 @@ class EventController extends Controller
         ]);
 
         return to_route('dashboard.user')->with('success', 'Your event has been add successfully.');
-
-
     }
 
     /**
