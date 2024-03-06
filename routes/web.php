@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/reserver', [ReservationController::class, 'store'])->name('reserver');
 });
 
+Route::post('/search', [EventController::class, 'search'])->name('search');
+
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
 

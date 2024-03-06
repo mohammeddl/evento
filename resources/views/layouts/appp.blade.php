@@ -106,6 +106,99 @@
     </div>
 </section>
 
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script> --}}
+<script>
+     $(document).ready(function() {
+                $('#searchForm').submit(function(event) {
+                    event.preventDefault();
+
+                    var formData = $(this).serialize();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route("search") }}',
+                        data: formData,
+                        success: function(response) {
+                            updateSearchResults(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+
+                function updateSearchResults(results) {
+    var resultContainer = $('#result');
+    resultContainer.empty();
+
+    var title = $('#title').val().trim();
+        var location = $('#location').val().trim();
+
+        if (title === '' && location === '') {
+            $('#result').html('<div class="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"><div class="flex items-center justify-center w-12 bg-gray-400"><svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z" /></svg></div><div class="px-4 py-2 -mx-3"><div class="mx-3"><span class="font-semibold text-yellow-400 dark:text-yellow-300">Warning</span><p class="text-sm text-gray-600 dark:text-gray-200">Please enter at least one search criteria.</p></div></div></div>');
+            return;
+        }
+
+    if (results.length > 0) {
+
+        $.each(results, function(index, result) {
+            var jobElement = $('<div>').addClass('flex flex-col rounded-lg shadow-lg overflow-hidden');
+            var imageElement = $('<div>').addClass('flex-shrink-0').html(
+                '<img class="h-48 w-full object-cover" src="images/'+ result.img +'" alt="">'
+            );
+            var contentElement = $('<div>').addClass('flex-1 bg-white p-6 flex flex-col justify-between').html(
+                '<div class="flex-1">' +
+                '<p class="text-sm font-medium text-indigo-600">' +
+                '<a href="#" class="hover:underline">' + result.skills_required + '</a>' +
+                '</p>' +
+                '<a href="#" class="block mt-2">' +
+                '<p class="text-xl font-semibold text-gray-900">' + result.title + '</p>' +
+                '<p class="mt-3 text-base text-gray-500">' + result.description + '</p>' +
+                '</a>' +
+                '</div>' +
+                '<div class="mt-6 flex justify-between">' +
+                '<div class="flex">' +
+                '<div class="flex-shrink-0">' +
+                '<a href="#">' +
+                '<span class="sr-only">User Name</span>' +
+                '<img class="h-10 w-10 rounded-full" src="' + result.companie.logo + '" alt="">' +
+                '</a>' +
+                '</div>' +
+                '<div class="ml-3">' +
+                '<p class="text-sm font-medium text-gray-900">' +
+                '<a href="#" class="hover:underline">' + result.companie.id + '</a>' +
+                '</p>' +
+                '<div class="flex space-x-1 text-sm text-gray-500">' +
+                '<time datetime="' + result.created_at + '">' + '</time>' +
+                '<span>' + result.location + '</span>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<a href="/offers/'+result.id +'" class="inline-block mt-4 text-blue-500 underline hover:text-blue-400">Read more</a>' +
+                '</div>'
+            );
+            jobElement.append(imageElement);
+            jobElement.append(contentElement);
+            resultContainer.append(jobElement);
+        });
+    } else {
+        var noResultsMessage = $('<div>').addClass('flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800').html(
+            '<div class="flex items-center justify-center w-12 bg-yellow-400">' +
+            '<svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z" />' +
+            '</svg>' +
+            '</div>' +
+            '<div class="px-4 py-2 -mx-3">' +
+            '<div class="mx-3">' +
+            '<span class="font-semibold text-yellow-400 dark:text-yellow-300">Warning</span>' +
+            '<p class="text-sm text-gray-600 dark:text-gray-200">No results found!</p>' +
+            '</div>' +
+            '</div>'
+        );
+        resultContainer.append(noResultsMessage);
+    }
+}
+            });
+</script>
+
 </body>
 </html>

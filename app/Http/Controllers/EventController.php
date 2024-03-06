@@ -16,12 +16,16 @@ class EventController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function search(Request $request)
     {
-        //
+        $title = $request->input('title');
+        $location = $request->input('location');
+
+        $event = Event::where('title', 'like', "%$title%")
+            ->where('location', 'like', "%$location%")
+            ->get();
+
+        return response()->json($event);
     }
 
     /**

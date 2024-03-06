@@ -8,3 +8,9 @@
         </button>
     </form>
 </div>
+
+<div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+    <div id="result">
+
+    </div>
+</div>
