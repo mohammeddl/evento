@@ -1,4 +1,4 @@
-<div class="text-center">
+<div >
     <div>
         <div class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50" id="formHidden" style="display: none;">
             <div class="modal-content bg-white mx-auto my-8 p-8 w-1/2">

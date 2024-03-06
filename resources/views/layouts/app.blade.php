@@ -33,5 +33,20 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+        function clickHidden() {
+            formHidden = document.getElementById("formHidden2");
+            if (formHidden.style.display === 'none') {
+                formHidden.style.display = "block";
+            }
+        }
+
+        function hidePopup() {
+            formHidden = document.getElementById("formHidden2");
+            if (formHidden.style.display === 'block') {
+                formHidden.style.display = "none";
+            }
+        }
+</script>
     </body>
 </html>

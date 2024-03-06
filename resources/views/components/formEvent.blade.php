@@ -1,7 +1,7 @@
-<section class="flex items-center h-[85vh]">
-    <div class="max-w-4xl p-14 m-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+<section >
+    <div class="max-w-4xl h-[80vh] p-12 m-auto bg-white rounded-md shadow-md dark:bg-gray-800 fixed inset-0 z-50  bg-opacity-100" id="formHidden2" style="display: none;">
+        <span onclick="hidePopup()" class="float-right cursor-pointer">&times;</span>
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Create The Event</h2>
-
         <form method="POST" action="{{route('event.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -81,3 +81,5 @@
         </form>
         </div>
     </section>
+
+
