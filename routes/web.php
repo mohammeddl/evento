@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrganizerController;
@@ -32,6 +33,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
 Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
 Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
+Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
