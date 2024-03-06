@@ -29,7 +29,7 @@
                         <h2 class="text-2xl font-bold">add new Category</h2>
                     </div>
                     <label class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="nameCategory" name="category_name" class="mt-1 p-2 border border-gray-300 rounded-md">
+                    <input type="text" id="category" name="category_name" class="mt-1 p-2 border border-gray-300 rounded-md">
                     <x-input-error :messages="$errors->get('category_name')" class="mt-2" />
                     <button class="mt-4 inline-flex bg-indigo-900 items-center px-4 py-2 hover:bg-gray-600 text-white text-sm font-medium rounded-md">
                         create

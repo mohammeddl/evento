@@ -12,12 +12,15 @@ class CategoryController extends Controller
     {
 
         // dd($request->nameCategory);
+        // $request->validate([
+        //     'name' => ['required', 'unique:' . Category::class],
+        // ]);
         $request->validate([
-            'category_name' => ['required', 'unique:' . Category::class],
+            'category_name' => ['required', 'unique:categories'],
         ]);
 
-        $category = Category::created([
-            'category_name' => $request->nameCategory,
+        $category = Category::create([
+            'category_name' => $request->category_name,
         ]);
 
         return to_route('category')->with('success', 'Your category has been add successfully.');
