@@ -24,7 +24,9 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->string('acceptation')->default('pending');
             $table->unsignedBigInteger('organizer_id');
+            $table->unsignedBigInteger('category_id');
             $table->foreign('organizer_id')->references('id')->on('organizers')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

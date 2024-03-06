@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $EventFromDb = Event::all();
+        $EventFromDb = Event::where('acceptation', 'pending');
         $countUsers = User::count();
         $userFromDB = User::where('role', 'user', 'organizer')->get();
         return view('dashboardAdmin', ['users' => $userFromDB, 'countUsers' => $countUsers, 'events' => $EventFromDb]);
@@ -32,5 +32,9 @@ class AdminController extends Controller
             'acceptation' => 'accepted',
         ]);
         return to_route('admin')->with('success', 'Event has been accepted successfully');
+    }
+
+    public function category(){
+        return view('categoryAdmin');
     }
 }

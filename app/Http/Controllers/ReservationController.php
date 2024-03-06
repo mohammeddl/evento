@@ -49,6 +49,7 @@ class ReservationController extends Controller
                 'user_id' => $user,
                 'status' => 'true',
             ]);
+            
             return to_route('dashboard.user')->with('success', 'Your reservation event has been successfully.');
         }
     }

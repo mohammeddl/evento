@@ -38,6 +38,7 @@ class OrganizerController extends Controller
             'date' => ['required'],
             // 'category' => ['required'],
             'capacity' => ['required'],
+            'price' => ['required'],
 
         ]);
 
@@ -59,6 +60,7 @@ class OrganizerController extends Controller
             'date' => $request->date,
             'category' => 'yes',
             'capacity' => $request->capacity,
+            'price' => $request->price,
             'organizer_id' => $user,
         ]);
 
