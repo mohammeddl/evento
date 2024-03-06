@@ -27,9 +27,9 @@ class AdminController extends Controller
     public function modify(Request $request)
     {
         $eventFromDB = Event::findOrFail($request->id);
-        dd($eventFromDB);
+
         $eventFromDB->update([
-            'acceptation' => 'true',
+            'acceptation' => 'accepted',
         ]);
         return to_route('admin')->with('success', 'Event has been accepted successfully');
     }

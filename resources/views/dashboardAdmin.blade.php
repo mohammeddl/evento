@@ -110,7 +110,7 @@
                             <span class="mx-3 text-gray-600">{{$event->category}}</span>
                             <span class="mx-3 text-gray-600">price</span>
                         </div>
-                        <form action="{{route('event.accepation' }}" method="POST">
+                        <form action="{{route('event.accepation')}}" method="POST">
                             @csrf
                             @method('PUT')
                             <input type="hidden" value="{{$event->id}}" name="id">

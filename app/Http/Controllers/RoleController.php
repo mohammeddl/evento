@@ -10,7 +10,7 @@ class RoleController extends Controller
     {
         switch ($request->user()->role) {
             case 'organizer':
-                return redirect()->route('candidate');
+                return redirect()->route('dashboard.user');
             case 'user':
                 return redirect()->route('candida.index');
             case 'admin':

@@ -17,7 +17,9 @@ class Event extends Model
         'category',
         'capacity',
         'status',
+        'price',
         'organizer_id',
+        'acceptation'
     ];
 
     public function event(){

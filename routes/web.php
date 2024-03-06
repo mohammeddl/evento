@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
-Route::put('/admin/event/{id}', [AdminController::class, 'modify'])->name('event.accepation');
+Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

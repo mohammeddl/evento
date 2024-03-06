@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $eventFromDB = Event::paginate(3)->where('acceptation', 'true');
+        $eventFromDB = Event::paginate(3)->where('acceptation', 'accepted');
         return view('index',['eventFromDB'=>$eventFromDB]);
     }
 
