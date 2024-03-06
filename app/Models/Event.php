@@ -14,7 +14,7 @@ class Event extends Model
         'description',
         'location',
         'date',
-        'category',
+        'category_id',
         'capacity',
         'status',
         'price',
@@ -22,7 +22,8 @@ class Event extends Model
         'acceptation'
     ];
 
-    public function event(){
-        return $this->belongsTo(Organizer::class,'organizer_id');
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -25,9 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [RoleController::class, 'index']);
 Route::get('/', [UserController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[OrganizerController::class,'index'])->name('dashboard');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');

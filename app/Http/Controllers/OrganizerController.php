@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class OrganizerController extends Controller
@@ -14,7 +15,8 @@ class OrganizerController extends Controller
      */
     public function index()
     {
-        //
+        $categoryFromDB = Category::all();
+        return view('dashboard', ['categories' => $categoryFromDB]);
     }
 
     /**
@@ -36,7 +38,6 @@ class OrganizerController extends Controller
             'description' => ['required'],
             'location' => ['required'],
             'date' => ['required'],
-            // 'category' => ['required'],
             'capacity' => ['required'],
             'price' => ['required'],
 
@@ -50,6 +51,7 @@ class OrganizerController extends Controller
             $imageName = '';
         }
 
+
         $user = Auth::user()->organizer->id;
 
         $event = Event::create([
@@ -58,13 +60,13 @@ class OrganizerController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
-            'category' => 'yes',
+            'category_id' => $request->category,
             'capacity' => $request->capacity,
             'price' => $request->price,
             'organizer_id' => $user,
         ]);
 
-        return to_route('dashboard.user')->with('success', 'Your event has been add successfully.');
+        return to_route('dashboard')->with('success', 'Your event has been add successfully.');
     }
 
     /**

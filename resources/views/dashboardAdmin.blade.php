@@ -102,12 +102,13 @@
                         <div class="flex items-center mt-4 -mx-2 sm:mt-0">
                         </div>
                     </div>
+
                     @foreach($events as $event)
                     <div class="flex items-center justify-between ">
                         <div class="flex items-center">
                             <img class="w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover" src="{{asset('images/'.$event->image)}}">
                             <span class="mx-3 text-gray-600">{{$event->title}}</span>
-                            <span class="mx-3 text-gray-600">{{$event->category}}</span>
+                            <span class="mx-3 text-gray-600">{{$event->category->category_name}}</span>
                             <span class="mx-3 text-gray-600">price</span>
                         </div>
                         <form action="{{route('event.accepation')}}" method="POST">

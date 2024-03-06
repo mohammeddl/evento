@@ -88,7 +88,7 @@ class EventController extends Controller
             'status' => $request->status,
         ]);
 
-        return to_route('dashboard.user')->with('success', 'Your event has been add successfully.');
+        return to_route('dashboard')->with('success', 'Your event has been add successfully.');
     }
 
     /**

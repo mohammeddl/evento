@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('description');
             $table->string('location');
             $table->date('date');
-            $table->string('category');
             $table->integer('capacity');
             $table->integer('price');
             $table->string('status')->default('pending');
