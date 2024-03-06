@@ -1,7 +1,7 @@
 <x-app-layout>
 <section>
     <div class="relative h-[120vh] lg:flex">
-        <aside id="sidebar" :class="isOpen ? 'translate-x-0 ease-in' : '-translate-x-full ease-out'" class="fixed inset-y-0 left-0 z-30 flex flex-col w-[4.5rem] min-h-screen space-y-6 overflow-y-auto text-gray-100 transition duration-200 transform bg-gray-800 lg:translate-x-0 lg:relative lg:inset-0">
+        <aside id="sidebar" :class="isOpen ? 'translate-x-0 ease-in' : '-translate-x-full ease-out'" class="fixed inset-y-0 left-0 z-30 flex flex-col w-[4.5rem] min-h-screen space-y-6 overflow-y-auto text-gray-100 transition duration-200 transform bg-indigo-950 lg:translate-x-0 lg:relative lg:inset-0">
             <div class="flex flex-col items-center flex-1 space-y-6">
                 <nav class="flex flex-col items-center space-y-6">
                     <a href="#" class="p-3 mt-6 transition-colors duration-300 bg-white rounded-lg">
@@ -32,8 +32,8 @@
                         </svg>
 
                         <div class="mx-2">
-                            <h3 class="text-2xl font-medium text-gray-800">62</h3>
-                            <p class="mt-1 text-sm text-gray-500">Students</p>
+                            <h3 class="text-2xl font-medium text-gray-800">{{$countUsers}}</h3>
+                            <p class="mt-1 text-sm text-gray-500">Users</p>
                         </div>
                     </div>
                 </div>
@@ -98,37 +98,48 @@
 
                 <div class="flex flex-col justify-center px-8 py-6 bg-white rounded-lg shadow-md shadow-gray-200 md:col-span-2 md:row-span-2 gap-y-4 gap-x-8 ">
                     <div class="sm:flex sm:items-center sm:justify-between">
-                        <h2 class="font-medium text-gray-700">The number of applied and left students per month</h2>
-
+                        <h2 class="font-medium text-gray-700">The Events </h2>
                         <div class="flex items-center mt-4 -mx-2 sm:mt-0">
-
                         </div>
                     </div>
-
-                    <canvas class="max-w-3xl max-h-96" id="secondChart"></canvas>
+                    @foreach($events as $event)
+                    <div class="flex items-center justify-between ">
+                        <div class="flex items-center">
+                            <img class="w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover" src="{{asset('images/'.$event->image)}}">
+                            <span class="mx-3 text-gray-600">{{$event->title}}</span>
+                            <span class="mx-3 text-gray-600">{{$event->category}}</span>
+                            <span class="mx-3 text-gray-600">price</span>
+                        </div>
+                        <form action="{{route('event.accepation' }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" value="{{$event->id}}" name="id">
+                            <button class=" transition-colors duration-300 rounded-lg group hover:bg-gray-200"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#19d29a" d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg></button>
+                        </form>
+                    </div>
+                    @endforeach
+                    <canvas class="max-w-3xl max-h-96" id="secondChart">
+                    </canvas>
                 </div>
 
                 <div class="row-span-3 bg-white rounded-lg h-2/3 shadow-md shadow-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100 sm:flex sm:items-center sm:justify-between">
                         <h2 class="font-medium text-gray-700">Users by average mark</h2>
                     </div>
-
                     <div class="p-6 space-y-6">
+                        @foreach($users as $user)
                         <div class="flex items-center justify-between ">
                             <div class="flex items-center">
-                                <img class="w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
-                                <span class="mx-3 text-gray-600">Annette Watson</span>
+                                <img class="w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover" src="{{asset('images/'.$user->image)}}">
+                                <span class="mx-3 text-gray-600">{{$user->name}}</span>
                             </div>
-                            <span class="font-semibold text-gray-600">9.3</span>
+                            <form action="{{route('user.destroy',[$user->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class=" transition-colors duration-300 rounded-lg group hover:bg-gray-200"><svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 512 512"><path d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg></button>
+                            </form>
                         </div>
-
-                        <div class="flex items-center justify-between ">
-                            <div class="flex items-center">
-                                <img class="w-10 h-10 overflow-hidden bg-gray-100 rounded-full object-cover" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80">
-                                <span class="mx-3 text-gray-600">Ralph Richards</span>
-                            </div>
-                            <span class="font-semibold text-gray-600">8.9</span>
-                        </div>
+                    @endforeach
                     </div>
                 </div>
 

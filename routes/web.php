@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,14 +21,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('/home', [RoleController::class, 'index']);
 Route::get('/', [UserController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/admin',[AdminController::class,'index'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
+Route::put('/admin/event/{id}', [AdminController::class, 'modify'])->name('event.accepation');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

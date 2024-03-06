@@ -53,7 +53,7 @@
                                     <h1 class="text-gray-500 dark:text-gray-300">Select type of account</h1>
                                     <div class="mt-3 md:flex md:items-center md:-mx-2">
                                         <select name="role" class="w-full px-6 py-3 text-indigo-500 border border-indigo-500 rounded-lg md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
-                                            <option value="user">User</option>
+                                            <option value="admin">User</option>
                                             <option value="organizer">Company</option>
                                         </select>
                                     </div>

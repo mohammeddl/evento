@@ -1,12 +1,12 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-indigo-950 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="#_" class="box-border inline-block font-sans text-2xl font-bold text-left text-white no-underline bg-transparent cursor-pointer focus:no-underline">
+                        Evento.
                     </a>
                 </div>
 
@@ -50,13 +50,10 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
-                @if(Auth::user()->role == 'organizer')
                 <span class="inline-block relative mx-4">
                     <img class="h-10 w-10 rounded-3xl" src="{{asset('images/'.Auth::user()->image )}}" alt="">
                     <span class="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full ring-2 ring-white bg-green-400"></span>
                   </span>
-                  @else
-                  @endif
             </div>
 
             <!-- Hamburger -->

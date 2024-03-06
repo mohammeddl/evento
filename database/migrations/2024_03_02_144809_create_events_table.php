@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('category');
             $table->integer('capacity');
+            $table->integer('price');
             $table->string('status')->default('pending');
             $table->string('acceptation')->default('pending');
             $table->unsignedBigInteger('organizer_id');
