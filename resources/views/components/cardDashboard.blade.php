@@ -16,7 +16,7 @@
     </div>
     <div class="relative max-w-7xl mx-auto">
       <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-        @foreach(Auth::user()->organizer->event as $item)
+        @foreach($events as $item)
           <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
             <div class="flex-shrink-0">
               <img class="h-48 w-full object-cover" src="{{asset('images/'. $item->image)}}">
@@ -54,6 +54,7 @@
             </div>
           </div>
           @endforeach
-      </div>
+        </div>
+        {{$events->links()}}
     </div>
-  </div>
+</div>

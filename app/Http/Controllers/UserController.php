@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $categoryFromDB = Category::all();
-        $eventFromDB = Event::paginate(3)->where('acceptation', 'accepted');
+        $eventFromDB = Event::where('acceptation', 'accepted')->paginate(3);
         return view('index',['eventFromDB'=>$eventFromDB,'categories'=>$categoryFromDB]);
     }
 

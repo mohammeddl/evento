@@ -15,8 +15,8 @@
         </svg>
 
         <div class="mx-2">
-            <h3 class="text-2xl font-medium text-gray-800">25</h3>
-            <p class="mt-1 text-sm text-gray-500">Lections left</p>
+            <h3 class="text-2xl font-medium text-gray-800">{{$accepted}}</h3>
+            <p class="mt-1 text-sm text-gray-500">Event accepted</p>
         </div>
     </div>
 </div>
@@ -32,12 +32,13 @@
         </svg>
 
         <div class="mx-2">
-            <h3 class="text-2xl font-medium text-gray-800">139</h3>
-            <p class="mt-1 text-sm text-gray-500">Hours spent on lections</p>
+            <h3 class="text-2xl font-medium text-gray-800">{{$pending}}</h3>
+            <p class="mt-1 text-sm text-gray-500">Event unacceptable Yet</p>
         </div>
     </div>
 </div>
 
 </section>
 @include('components.cardDashboard')
+
 </x-app-layout>

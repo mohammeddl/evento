@@ -15,8 +15,12 @@ class OrganizerController extends Controller
      */
     public function index()
     {
+        $user = Auth::user()->organizer->id;
+        $event = Event::where('organizer_id', $user)->paginate(3);
         $categoryFromDB = Category::all();
-        return view('dashboard', ['categories' => $categoryFromDB]);
+        $eventPending = Event::where('acceptation', 'pending')->where('organizer_id', $user)->count();
+        $eventAccepted = Event::where('acceptation', 'accepted')->where('organizer_id', $user)->count();
+        return view('dashboard', ['events'=>$event,'categories' => $categoryFromDB, 'pending' => $eventPending, 'accepted'=>$eventAccepted]);
     }
 
     /**
