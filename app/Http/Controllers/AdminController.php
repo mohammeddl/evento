@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Event;
 
@@ -36,6 +37,7 @@ class AdminController extends Controller
 
     public function category()
     {
-        return view('categoryAdmin');
+        $categoryFromDB = Category::all();
+        return view('categoryAdmin',['categories'=> $categoryFromDB]);
     }
 }

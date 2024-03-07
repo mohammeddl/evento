@@ -32,6 +32,7 @@ Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('us
 Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
 Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
 Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
+Route::put('/category/update',[CategoryController::class,'update'])->name('catagory.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

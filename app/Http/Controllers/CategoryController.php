@@ -21,11 +21,25 @@ class CategoryController extends Controller
 
         return to_route('category')->with('success', 'Your category has been add successfully.');
     }
+
+
     public function filter(Request $request)
     {
-        // dd($request->idCategory);
         $categoryFromDB = Category::all();
         $eventFromDB = Event::paginate(3)->where('acceptation', 'accepted')->where('category_id', $request->idCategory);
         return view('index', ['eventFromDB' => $eventFromDB, 'categories' => $categoryFromDB]);
+    }
+
+    public function update(Request $request)
+    {
+        $category = Category::findOrFail($request->idTag);
+        $request->validate([
+            'category_name' => ['required', 'unique:categories'],
+        ]);
+
+        $category->update([
+            'category_name' => $request->category_name,
+        ]);
+        return to_route('category')->with('success', 'Your category has been modify successfully.');
     }
 }
