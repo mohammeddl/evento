@@ -8,6 +8,7 @@ use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SocialteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +28,14 @@ Route::get('/', [UserController::class, 'index'])->name('index');
 
 Route::get('/dashboard',[OrganizerController::class,'index'])->name('dashboard');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
-Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
-Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
-Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
-Route::put('/category/update',[CategoryController::class,'update'])->name('catagory.update');
+Route::middleware('admin')->group(function(){
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
+    Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
+    Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
+    Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
+    Route::put('/category/update',[CategoryController::class,'update'])->name('catagory.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('organizer')->group(function () {
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
     Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
     Route::get('/events/{id}', [EventController::class, 'edit'])->name('event.edit');
@@ -50,9 +53,9 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/search', [EventController::class, 'search'])->name('search');
 Route::post('/filter', [CategoryController::class, 'filter'])->name('filter');
-
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
-
+Route::get('/auth/google', [SocialteController::class, 'redirectToGoogle'])->name('google');
+Route::get('/auth/google/callback', [SocialteController::class, 'handleGoogleCallback'])->name('google.test');
 
 require __DIR__ . '/auth.php';
