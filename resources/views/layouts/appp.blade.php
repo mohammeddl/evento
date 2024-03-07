@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
@@ -139,16 +140,16 @@
         }
 
     if (results.length > 0) {
-
         $.each(results, function(index, result) {
-            var jobElement = $('<div>').addClass('flex flex-col rounded-lg shadow-lg overflow-hidden');
+            console.log(results)
+            var eventElement = $('<div>').addClass('"px-4 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-8');
             var imageElement = $('<div>').addClass('flex-shrink-0').html(
-                '<img class="h-48 w-full object-cover" src="images/'+ result.img +'" alt="">'
+                '<img class="h-48 w-full object-cover" src="images/'+ result.image +'" alt="">'
             );
             var contentElement = $('<div>').addClass('flex-1 bg-white p-6 flex flex-col justify-between').html(
                 '<div class="flex-1">' +
                 '<p class="text-sm font-medium text-indigo-600">' +
-                '<a href="#" class="hover:underline">' + result.skills_required + '</a>' +
+                '<a href="#" class="hover:underline">' + result.location + '</a>' +
                 '</p>' +
                 '<a href="#" class="block mt-2">' +
                 '<p class="text-xl font-semibold text-gray-900">' + result.title + '</p>' +
@@ -160,12 +161,12 @@
                 '<div class="flex-shrink-0">' +
                 '<a href="#">' +
                 '<span class="sr-only">User Name</span>' +
-                '<img class="h-10 w-10 rounded-full" src="' + result.companie.logo + '" alt="">' +
+                '<img class="h-10 w-10 rounded-full" src="' + result.title + '" alt="">' +
                 '</a>' +
                 '</div>' +
                 '<div class="ml-3">' +
                 '<p class="text-sm font-medium text-gray-900">' +
-                '<a href="#" class="hover:underline">' + result.companie.id + '</a>' +
+                '<a href="#" class="hover:underline">' + result.id + '</a>' +
                 '</p>' +
                 '<div class="flex space-x-1 text-sm text-gray-500">' +
                 '<time datetime="' + result.created_at + '">' + '</time>' +
@@ -173,12 +174,12 @@
                 '</div>' +
                 '</div>' +
                 '</div>' +
-                '<a href="/offers/'+result.id +'" class="inline-block mt-4 text-blue-500 underline hover:text-blue-400">Read more</a>' +
+                '<a href="/event/'+result.id +'" class="inline-block mt-4 text-blue-500 underline hover:text-blue-400">Read more</a>' +
                 '</div>'
             );
-            jobElement.append(imageElement);
-            jobElement.append(contentElement);
-            resultContainer.append(jobElement);
+            eventElement.append(imageElement);
+            eventElement.append(contentElement);
+            resultContainer.append(eventElement);
         });
     } else {
         var noResultsMessage = $('<div>').addClass('flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800').html(

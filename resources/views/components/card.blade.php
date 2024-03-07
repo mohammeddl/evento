@@ -30,7 +30,7 @@
                 <form action="{{route('reserver')}}" method="POST">
                     @csrf
                     <input type="hidden" name="idEvent" value="{{$item->id}}">
-                    <button>reserver</button>
+                    <button class=" font-medium text-gray-900 hover:bg-gray-500 px-4 p-1 border-solid border-2 border-gray-600">Reserver</button>
                 </form>
           </div>
         </div>
