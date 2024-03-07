@@ -29,7 +29,7 @@
 
                         <form class="w-full max-w-md" method="POST" action="{{route('register.store')}}" enctype="multipart/form-data">
                             @csrf
-                                <a href="#" class="flex items-center justify-center mt-10 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <a href="{{route('google')}}" class="flex items-center justify-center mt-10 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <div class="px-4 py-2">
                                         <svg class="w-6 h-6" viewBox="0 0 40 40">
                                             <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
@@ -53,7 +53,7 @@
                                     <h1 class="text-gray-500 dark:text-gray-300">Select type of account</h1>
                                     <div class="mt-3 md:flex md:items-center md:-mx-2">
                                         <select name="role" class="w-full px-6 py-3 text-indigo-500 border border-indigo-500 rounded-lg md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
-                                            <option value="admin">User</option>
+                                            <option value="user">User</option>
                                             <option value="organizer">Company</option>
                                         </select>
                                     </div>

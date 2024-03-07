@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/reserver', [ReservationController::class, 'store'])->name('reserver');
 });
 
 Route::middleware('organizer')->group(function () {
@@ -48,7 +49,6 @@ Route::middleware('organizer')->group(function () {
     Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
     Route::get('/events/{id}', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
-    Route::post('/reserver', [ReservationController::class, 'store'])->name('reserver');
 });
 
 Route::post('/search', [EventController::class, 'search'])->name('search');
@@ -58,4 +58,8 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/auth/google', [SocialteController::class, 'redirectToGoogle'])->name('google');
 Route::get('/auth/google/callback', [SocialteController::class, 'handleGoogleCallback'])->name('google.test');
 
+
+Route::get('/ticket',function(){
+    return view('components.ticket');
+});
 require __DIR__ . '/auth.php';

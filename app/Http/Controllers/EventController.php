@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,7 +53,8 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::findOrFail($id);
-        return view('modifyEvent', ['item' => $event]);
+        $categoryFromDB = Category::all();
+        return view('modifyEvent', ['item' => $event, 'categories'=>$categoryFromDB]);
     }
 
     /**
@@ -86,7 +88,7 @@ class EventController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
-            'category' => 'yes',
+            'category' => $request->category,
             'capacity' => $request->capacity,
             'organizer_id' => $user,
             'status' => $request->status,

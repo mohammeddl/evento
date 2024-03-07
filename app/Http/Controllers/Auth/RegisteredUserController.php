@@ -45,6 +45,8 @@ class RegisteredUserController extends Controller
         } else {
             $imageName = '';
         }
+
+
         $user = User::create([
             'name' => $request->name,
             'image' => $imageName,

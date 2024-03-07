@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Event;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ReservationController extends Controller
 {
@@ -14,7 +16,6 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -30,27 +31,32 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-
+        $user = Auth::user()->id;
         $idEvent = $request->idEvent;
         $eventexe =  Event::where('id', $idEvent)
             ->where('status', 'pending')
             ->first();
-        $user = Auth::user()->id;
         if ($eventexe) {
             $reservation = Reservation::create([
                 'event_id' => $idEvent,
                 'user_id' => $user,
                 'status' => 'pending',
             ]);
-            return to_route('dashboard.user')->with('success', 'Your reservation event has been pending.');
+            return to_route('index')->with('pending', 'Your reservation event has been pending.');
         } else {
             $reservation = Reservation::create([
                 'event_id' => $idEvent,
                 'user_id' => $user,
                 'status' => 'true',
             ]);
-
-            return to_route('dashboard.user')->with('success', 'Your reservation event has been successfully.');
+            $ticketId = uniqid();
+            $ticket = Ticket::created([
+                'reservation_id' => $reservation->id,
+                'ticket' => $ticketId,
+            ]);
+            $user = Auth::user()->name;
+            $pdf = Pdf::loadView('ticket', ['tickets' => $ticket, 'users' => $user]);
+            return $pdf->download('ticket.pdf');
         }
     }
 

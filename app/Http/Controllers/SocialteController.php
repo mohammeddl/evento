@@ -27,6 +27,7 @@ class SocialteController extends Controller
                     'email' => $google_user->getEmail(),
                     'image' => $google_user->getAvatar(),
                     'role' => 'user',
+                    'social_id' => $google_user->getId(),
                 ]);
                 Auth::login($new_user);
                 return redirect(RouteServiceProvider::HOME);
