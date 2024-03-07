@@ -4,7 +4,7 @@
             <div class="modal-content bg-white mx-auto my-8 p-8 w-1/2">
                 <form action="" method="POST">
                     <div class="mb-4">
-                        <span onclick="hidePopupEdit()" class="float-right cursor-pointer">&times;</span>
+                        <span onclick="hidePopupEditt()" class="float-right cursor-pointer">&times;</span>
                         <h2 class="text-2xl font-bold">Modify Category</h2>
                     </div>
                     <input id="id2" type="hidden" name="idTag" value="">
@@ -25,7 +25,7 @@
                 <form action="{{route('catagory.store')}}" method="POST">
                     @csrf
                     <div class="mb-4">
-                        <span onclick="hidePopup()" class="float-right cursor-pointer">&times;</span>
+                        <span onclick="hidePopupp()" class="float-right cursor-pointer">&times;</span>
                         <h2 class="text-2xl font-bold">add new Category</h2>
                     </div>
                     <label class="block text-sm font-medium text-gray-700">Name</label>

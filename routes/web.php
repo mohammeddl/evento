@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/search', [EventController::class, 'search'])->name('search');
+Route::post('/filter', [CategoryController::class, 'filter'])->name('filter');
 
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 

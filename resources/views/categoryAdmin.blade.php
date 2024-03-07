@@ -21,7 +21,7 @@
                     <p class="mt-2 text-sm text-gray-500">Mobile UX/UI Design Course</p>
                 </div>
                 <div class="flex flex-col mt-6 md:flex-row md:-mx-1 md:mt-0">
-                    <button onclick="clickHiddenTag()" class="px-6 py-3 focus:outline-none text-gray-500 transition-colors duration-300 rounded-lg md:mx-1 hover:bg-gray-400 hover:text-white">
+                    <button onclick="clickHiddenTagg()" class="px-6 py-3 focus:outline-none text-gray-500 transition-colors duration-300 rounded-lg md:mx-1 hover:bg-gray-400 hover:text-white">
                         <div class="flex items-center justify-center -mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -30,7 +30,7 @@
                         </div>
                     </button>
 
-                    <button onclick="clickHidden()" class="px-6 py-3 focus:outline-none mt-4 text-white bg-indigo-900 rounded-lg md:mt-0 md:mx-1 hover:bg-blue-500">
+                    <button onclick="clickHiddenn()" class="px-6 py-3 focus:outline-none mt-4 text-white bg-indigo-900 rounded-lg md:mt-0 md:mx-1 hover:bg-blue-500">
                         <div class="flex items-center justify-center -mx-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mx-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -48,7 +48,7 @@
                                     <input type="hidden" id="category" value="">
                                 </div>
                                 <div class=" flex justify-between p-3">
-                                    <div onclick="clickHiddenTag()"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                                    <div onclick="clickHiddenTagg()"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
                                             <path fill="#FFD43B" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
                                         </svg></div>
                                     <a href=""><svg xmlns="http://www.w3.org/2000/svg" height="14" width="12" viewBox="0 0 448 512">
@@ -65,7 +65,7 @@
         </div>
     </section>
     <script>
-        function clickHiddenTag(id) {
+        function clickHiddenTagg() {
                         formHidden = document.getElementById("formHidden");
                         if (formHidden.style.display === 'none') {
                             formHidden.style.display = "block";
@@ -80,7 +80,7 @@
                         document.getElementById('tagName2').value = nameTag;
                     }
 
-                    function hidePopupEdit() {
+                    function hidePopupEditt() {
                         formHidden = document.getElementById("formHidden");
                         if (formHidden.style.display === 'block') {
                             formHidden.style.display = "none";
@@ -88,13 +88,13 @@
                     }
 
 
-        function clickHidden() {
+        function clickHiddenn() {
                         formHidden = document.getElementById("formHidden1");
                         if (formHidden.style.display === 'none') {
                             formHidden.style.display = "block";
                         }
                     }
-                    function hidePopup() {
+                    function hidePopupp() {
                         formHidden = document.getElementById("formHidden1");
                         if (formHidden.style.display === 'block') {
                             formHidden.style.display = "none";
