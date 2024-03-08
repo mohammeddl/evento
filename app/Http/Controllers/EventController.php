@@ -68,7 +68,7 @@ class EventController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
-            'date' => ['required'],
+            'date' => ['required','after_or_equal:today'],
             'capacity' => ['required'],
         ]);
 

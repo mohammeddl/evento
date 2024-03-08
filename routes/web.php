@@ -50,6 +50,7 @@ Route::middleware('organizer')->group(function () {
     Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
     Route::get('/events/{id}', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
+    Route::delete('/event', [OrganizerController::class, 'destroy'])->name('event.destroy');
 });
 
 Route::post('/search', [EventController::class, 'search'])->name('search');

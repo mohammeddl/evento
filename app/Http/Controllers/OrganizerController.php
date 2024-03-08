@@ -100,8 +100,11 @@ class OrganizerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Request $request)
     {
-        //
+        $idEvent = $request->idEvent;
+        $event = Event::where('id',$idEvent);
+        $event->delete();
+        return to_route('dashboard')->with('success', 'Your event has been deleted successfully.');
     }
 }
