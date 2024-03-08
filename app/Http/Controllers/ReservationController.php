@@ -44,7 +44,7 @@ class ReservationController extends Controller
                 'user_id' => $user,
                 'status' => 'pending',
             ]);
-            return to_route('index')->with('pending', 'Your reservation event has been pending.');
+            return to_route('index')->with('info', 'Your reservation event has been pending.');
         } else {
             $reservation = Reservation::create([
                 'event_id' => $idEvent,

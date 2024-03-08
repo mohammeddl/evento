@@ -14,8 +14,9 @@ class AdminController extends Controller
     {
         $EventFromDb = Event::where('acceptation', 'pending')->get();
         $countUsers = User::count();
+        $totatEvent = Event::count();
         $userFromDB = User::where('role', 'organizer')->get();
-        return view('dashboardAdmin', ['users' => $userFromDB, 'countUsers' => $countUsers, 'events' => $EventFromDb]);
+        return view('dashboardAdmin', ['users' => $userFromDB, 'countUsers' => $countUsers, 'events' => $EventFromDb, 'totalEvent' => $totatEvent]);
     }
 
     public function destroy($id)
@@ -38,6 +39,6 @@ class AdminController extends Controller
     public function category()
     {
         $categoryFromDB = Category::all();
-        return view('categoryAdmin',['categories'=> $categoryFromDB]);
+        return view('categoryAdmin', ['categories' => $categoryFromDB]);
     }
 }

@@ -42,4 +42,10 @@ class CategoryController extends Controller
         ]);
         return to_route('category')->with('success', 'Your category has been modify successfully.');
     }
+
+    public function destroy(Request $request){
+        $category = Category::findOrFail($request->idCategory);
+        $category->delete();
+        return to_route('category')->with('success', 'Your category has been deleted successfully.');
+    }
 }

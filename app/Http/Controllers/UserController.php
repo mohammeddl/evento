@@ -16,7 +16,8 @@ class UserController extends Controller
     {
         $categoryFromDB = Category::all();
         $eventFromDB = Event::where('acceptation', 'accepted')->paginate(3);
-        return view('index',['eventFromDB'=>$eventFromDB,'categories'=>$categoryFromDB]);
+        $event = Event::where('acceptation', 'accepted')->first();
+        return view('index', ['eventFromDB' => $eventFromDB, 'categories' => $categoryFromDB, 'event' => $event]);
     }
 
     /**
@@ -32,8 +33,5 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
     }
-
-
 }

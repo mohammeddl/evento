@@ -35,6 +35,7 @@ Route::middleware('admin')->group(function(){
     Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
     Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
     Route::put('/category/update',[CategoryController::class,'update'])->name('catagory.update');
+    Route::delete('/category',[CategoryController::class,'destroy'])->name('catagory.destroy');
 });
 
 Route::middleware('auth')->group(function () {

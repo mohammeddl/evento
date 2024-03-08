@@ -20,7 +20,7 @@ class OrganizerController extends Controller
         $categoryFromDB = Category::all();
         $eventPending = Event::where('acceptation', 'pending')->where('organizer_id', $user)->count();
         $eventAccepted = Event::where('acceptation', 'accepted')->where('organizer_id', $user)->count();
-        return view('dashboard', ['events'=>$event,'categories' => $categoryFromDB, 'pending' => $eventPending, 'accepted'=>$eventAccepted]);
+        return view('dashboard', ['events' => $event, 'categories' => $categoryFromDB, 'pending' => $eventPending, 'accepted' => $eventAccepted]);
     }
 
     /**

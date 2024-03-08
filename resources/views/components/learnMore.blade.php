@@ -58,9 +58,9 @@
                 <dd class="text-2xl font-extrabold tracking-tight uppercase text-gray-900">{{$item->location}}</dd>
               </div>
 
-              <div class="border-t-2 border-gray-100 pt-6">
+              <div class="border-t-2 border-gray-100 pt-6 px-4">
                 <dt class="text-base font-medium text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" height="20" width="60.5" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#575757" d="M160 80c0-26.5 21.5-48 48-48h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V80zM0 272c0-26.5 21.5-48 48-48H80c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V272zM368 96h32c26.5 0 48 21.5 48 48V432c0 26.5-21.5 48-48 48H368c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48z"/></svg></dt>
-                <dd class="text-2xl font-extrabold tracking-tight text-gray-900">+  more</dd>
+                <dd class="text-2xl px-4 font-extrabold tracking-tight text-gray-900">{{$item->capacity}}</dd>
               </div>
 
               <div class="border-t-2 border-gray-100 pt-6">
@@ -68,11 +68,10 @@
                 <dd class="text-2xl font-extrabold tracking-tight text-gray-900">test</dd>
               </div>
 
-                <form action="" method="POST" class="flex justify-center w-36 p-3 my-8 font-medium bg-gray-800 rounded-full hover:bg-gray-700 text-green-50">
+                <form action="{{route('reserver')}}" method="POST" class="flex justify-center w-36 p-3 my-8 font-medium bg-gray-800 rounded-full hover:bg-gray-700 text-green-50">
                     @csrf
-                <input type="hidden" name="id_user" value="">
-                <input type="hidden" name="idJob" value="">
-                    <button class="text-2xl">Apply</button>
+                <input type="hidden" name="idEvent" value="{{$item->id}}">
+                    <button class="text-2xl">Reserver</button>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 mx-1"  width="12" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#8a8a8a" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
                 </form>
           </dl>

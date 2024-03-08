@@ -1,4 +1,5 @@
 <x-app-layout>
+@include('components.alert')
 <section>
     <div class="relative h-[120vh] lg:flex">
         <aside id="sidebar" :class="isOpen ? 'translate-x-0 ease-in' : '-translate-x-full ease-out'" class="fixed inset-y-0 left-0 z-30 flex flex-col w-[4.5rem] min-h-screen space-y-6 overflow-y-auto text-gray-100 transition duration-200 transform bg-indigo-950 lg:translate-x-0 lg:relative lg:inset-0">
@@ -90,8 +91,8 @@
                         </svg>
 
                         <div class="mx-2">
-                            <h3 class="text-2xl font-medium text-gray-800">92%</h3>
-                            <p class="mt-1 text-sm text-gray-500">Finished homeworks</p>
+                            <h3 class="text-2xl font-medium text-gray-800">{{$totalEvent}}</h3>
+                            <p class="mt-1 text-sm text-gray-500">Total Events</p>
                         </div>
                     </div>
                 </div>
