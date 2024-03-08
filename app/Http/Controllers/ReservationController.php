@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ticketMail;
 use App\Models\Reservation;
 use App\Models\Event;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -57,6 +59,7 @@ class ReservationController extends Controller
             $user = Auth::user()->name;
             $pdf = Pdf::loadView('ticket', ['tickets' => $ticket, 'users' => $user]);
             return $pdf->download('ticket.pdf');
+            // Mail::to()->send(new ticketMail());
         }
     }
 

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('organizers', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->default('1');
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

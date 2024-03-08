@@ -198,24 +198,16 @@
             </div>
           </div>
           <div class="ticket__body">
-            <p class="ticket__route">Winter Wonderland</p>
+            <p class="ticket__route">{{$users->name}}</p>
             <p class="ticket__description">A four-hour tour of the Strait of Garamond</p>
             <div class="ticket__timing">
               <p>
                 <span class="u-upper ticket__small-label">Date</span>
-                <span class="ticket__detail">Feb 27</span>
-              </p>
-              <p>
-                <span class="u-upper ticket__small-label">Launch</span>
-                <span class="ticket__detail">10:30 am</span>
-              </p>
-              <p>
-                <span class="u-upper ticket__small-label">Boarding</span>
-                <span class="ticket__detail">10:00 am</span>
+                <span class="ticket__detail"{{$ticket->created_at}}></span>
               </p>
             </div>
-            <p class="ticket__fine-print">This ticket cannot be transferred to another voyage</p>
-            <p class="u-upper ticket__admit">Admit one adult</p>
+            <p class="ticket__fine-print">This ticket cannot be transferred to another Events</p>
+            <p class="u-upper ticket__admit">{{$tickets->ticketId}}</p>
             <img class="ticket__barcode" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/515428/barcode.png" alt="Fake barcode" />
           </div>
         </div>
