@@ -103,7 +103,7 @@ class OrganizerController extends Controller
     public function destroy(Request $request)
     {
         $idEvent = $request->idEvent;
-        $event = Event::where('id',$idEvent);
+        $event = Event::findOrFail($idEvent);
         $event->delete();
         return to_route('dashboard')->with('success', 'Your event has been deleted successfully.');
     }
