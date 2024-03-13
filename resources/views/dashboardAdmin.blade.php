@@ -2,7 +2,7 @@
 @include('components.alert')
 <section>
     <div class="relative h-[120vh] lg:flex">
-        <aside id="sidebar" :class="isOpen ? 'translate-x-0 ease-in' : '-translate-x-full ease-out'" class="fixed inset-y-0 left-0 z-30 flex flex-col w-[4.5rem] min-h-screen space-y-6 overflow-y-auto text-gray-100 transition duration-200 transform bg-indigo-950 lg:translate-x-0 lg:relative lg:inset-0">
+        <aside id="sidebar" :class="isOpen ? 'translate-x-0 ease-in' : '-translate-x-full ease-out'" class="hidden fixed inset-y-0 left-0 z-30 md:flex flex-col w-[4.5rem] min-h-screen space-y-6 overflow-y-auto text-gray-100 transition duration-200 transform bg-indigo-950 lg:translate-x-0 lg:relative lg:inset-0">
             <div class="flex flex-col items-center flex-1 space-y-6">
                 <nav class="flex flex-col items-center space-y-6">
                     <a href="#" class="p-3 mt-6 transition-colors duration-300 bg-white rounded-lg">
@@ -19,7 +19,7 @@
         <main id="content" class="flex-1 pb-12 space-y-6  bg-gray-100 lg:h-screen md:space-y-8">
             <section class="flex flex-col h-24 w-full px-6 md:justify-between md:items-center md:flex-row">
                 <div>
-                    <h2 class="text-3xl font-medium text-gray-800">Dashboard</h2>
+                    <h2 class="text-2xl md:text-3xl font-medium text-gray-800">Dashboard</h2>
                     <p class="mt-2 text-sm text-gray-500">Welcome Admin</p>
                 </div>
             </section>
@@ -74,7 +74,7 @@
 
                         <div class="mx-2">
                             <h3 class="text-2xl font-medium text-gray-800">9 <span class="text-xl text-gray-600">(14%)</span></h3>
-                            <p class="mt-1 text-sm text-gray-500">Underperforming students</p>
+                            <p class="mt-1 text-sm text-gray-500">Underperforming </p>
                         </div>
                     </div>
                 </div>
@@ -101,6 +101,7 @@
                     <div class="sm:flex sm:items-center sm:justify-between">
                         <h2 class="font-medium text-gray-700">The Events </h2>
                         <div class="flex items-center mt-4 -mx-2 sm:mt-0">
+
                         </div>
                     </div>
 
@@ -126,7 +127,7 @@
 
                 <div class="row-span-3 bg-white rounded-lg  shadow-md shadow-gray-200">
                     <div class="px-6 py-5 border-b border-gray-100 sm:flex sm:items-center sm:justify-between">
-                        <h2 class="font-medium text-gray-700">Users by average mark</h2>
+                        <h2 class="font-medium text-gray-700">Deleted Users</h2>
                     </div>
                     <div class="p-6 space-y-6">
                         @foreach($users as $user)
@@ -147,10 +148,44 @@
 
                 <div class=" bg-white rounded-lg shadow-md shadow-gray-200 lg:row-span-2">
                     <div class="px-6 py-5 border-b border-gray-100">
-                        <h2 class="font-medium text-gray-700">Students by type of studying</h2>
+                        <h2 class="font-medium text-gray-700">Stop Organizer Create Event</h2>
                     </div>
 
-                    <div class="flex items-center p-8">
+                    <div class=" p-8">
+
+<ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+
+    @foreach($organizers as $organizer)
+    <li class="pb-3 sm:pb-4">
+       <div class="flex items-center space-x-4 rtl:space-x-reverse">
+          <div class="flex-shrink-0">
+             <img class="w-8 h-8 rounded-full" src="{{asset('images/'.$organizer->image)}}" alt="Neil image">
+          </div>
+          <div class="flex-1 min-w-0">
+             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                {{$organizer->name}}
+             </p>
+             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                {{$organizer->email}}
+             </p>
+          </div>
+          <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+            <form action="{{route('organizer.limite')}}" method="POST" class="text-sm text-indigo-700 border border-indigo-600 py-2 px-1 rounded inline-flex items-center">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="organzerId" value="{{$organizer->id}}">
+                <button><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                    <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+                </button>
+            </form>
+          </div>
+       </div>
+    </li>
+@endforeach
+ </ul>
+
                         <canvas class="max-w-sm" id="myChart"> </canvas>
                     </div>
                 </div>

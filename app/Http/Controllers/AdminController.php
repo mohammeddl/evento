@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\User;
 use App\Models\Event;
-
+use App\Models\Organizer;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,8 +15,12 @@ class AdminController extends Controller
         $EventFromDb = Event::where('acceptation', 'pending')->get();
         $countUsers = User::count();
         $totatEvent = Event::count();
-        $userFromDB = User::where('role', 'organizer')->get();
-        return view('dashboardAdmin', ['users' => $userFromDB, 'countUsers' => $countUsers, 'events' => $EventFromDb, 'totalEvent' => $totatEvent]);
+        $organizers = Organizer::where('status', 'true')
+        ->join('users', 'organizers.id', '=', 'users.id')
+        ->get();
+        $organizer = Organizer::where('status','true')->get();
+        $userFromDB = User::where('role', 'user')->get();
+        return view('dashboardAdmin', ['organizers'=>$organizers,'users' => $userFromDB, 'countUsers' => $countUsers, 'events' => $EventFromDb, 'totalEvent' => $totatEvent]);
     }
 
     public function destroy($id)

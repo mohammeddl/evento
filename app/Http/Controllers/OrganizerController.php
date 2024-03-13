@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
+use App\Models\Organizer;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 
 class OrganizerController extends Controller
@@ -16,19 +18,30 @@ class OrganizerController extends Controller
     public function index()
     {
         $user = Auth::user()->organizer->id;
+
         $event = Event::where('organizer_id', $user)->paginate(3);
         $categoryFromDB = Category::all();
         $eventPending = Event::where('acceptation', 'pending')->where('organizer_id', $user)->count();
         $eventAccepted = Event::where('acceptation', 'accepted')->where('organizer_id', $user)->count();
-        return view('dashboard', ['events' => $event, 'categories' => $categoryFromDB, 'pending' => $eventPending, 'accepted' => $eventAccepted]);
+        $eventIDs = Event::where('organizer_id', $user)->pluck('id');
+        $reservations = Reservation::with(['user', 'event'])
+            ->whereIn('event_id', $eventIDs)
+            ->where('status', 'pending')
+            ->get();
+        return view('dashboard', ['reservation' => $reservations, 'events' => $event, 'categories' => $categoryFromDB, 'pending' => $eventPending, 'accepted' => $eventAccepted]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function limite(Request $request)
     {
-        //
+        $organizer = Organizer::where('id', $request->organzerId);
+        $organizer->update([
+            'status' => 'false'
+        ]);
+
+        return to_route('admin')->with('success', 'Your organizer has been limited successfully.');
     }
 
     /**
@@ -41,7 +54,7 @@ class OrganizerController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
-            'date' => ['required'],
+            'date' => ['required','after_or_equal:today'],
             'capacity' => ['required'],
             'price' => ['required'],
 

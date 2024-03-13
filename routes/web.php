@@ -26,17 +26,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [RoleController::class, 'index']);
 Route::get('/', [UserController::class, 'index'])->name('index');
 
-Route::get('/dashboard',[OrganizerController::class,'index'])->name('dashboard');
 
-Route::middleware('admin')->group(function(){
+Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('user.destroy');
     Route::put('/admin/event', [AdminController::class, 'modify'])->name('event.accepation');
     Route::get('/admin/category', [AdminController::class, 'category'])->name('category');
-    Route::post('/category',[CategoryController::class,'store'])->name('catagory.store');
-    Route::put('/category/update',[CategoryController::class,'update'])->name('catagory.update');
-    Route::delete('/category',[CategoryController::class,'destroy'])->name('catagory.destroy');
+    Route::post('/category', [CategoryController::class, 'store'])->name('catagory.store');
+    Route::put('/category/update', [CategoryController::class, 'update'])->name('catagory.update');
+    Route::put('/admin/limite', [OrganizerController::class, 'limite'])->name('organizer.limite');
+    Route::delete('/category', [CategoryController::class, 'destroy'])->name('catagory.destroy');
 });
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,8 +47,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('organizer')->group(function () {
+    Route::get('/dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/user', [UserController::class, 'index'])->name('dashboard.user');
     Route::patch('/event/{id}/modify', [EventController::class, 'update'])->name('event.update');
+    Route::patch('/event/reservation', [ReservationController::class, 'update'])->name('reservation.update');
     Route::get('/events/{id}', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event', [OrganizerController::class, 'store'])->name('event.store');
     Route::delete('/event', [OrganizerController::class, 'destroy'])->name('event.destroy');
@@ -60,8 +63,7 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/auth/google', [SocialteController::class, 'redirectToGoogle'])->name('google');
 Route::get('/auth/google/callback', [SocialteController::class, 'handleGoogleCallback'])->name('google.test');
 
-
-Route::get('/ticket',function(){
+Route::get('/ticket', function () {
     return view('components.ticket');
 });
 require __DIR__ . '/auth.php';

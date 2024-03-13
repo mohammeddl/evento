@@ -54,7 +54,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         $categoryFromDB = Category::all();
-        return view('modifyEvent', ['item' => $event, 'categories'=>$categoryFromDB]);
+        return view('modifyEvent', ['item' => $event, 'categories' => $categoryFromDB]);
     }
 
     /**
@@ -68,8 +68,10 @@ class EventController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'location' => ['required'],
-            'date' => ['required','after_or_equal:today'],
+            'date' => ['required', 'after_or_equal:today'],
             'capacity' => ['required'],
+            'status' => ['required'],
+            'price' => ['required'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -80,21 +82,21 @@ class EventController extends Controller
             $imageName = '';
         }
 
-        $user = Auth::user()->organizer->id;
-        $event = Event::findOrFail($user);
+
+        $event = Event::findOrFail($request->idEvent);
         $event->update([
             'image' => $imageName,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
             'date' => $request->date,
-            'category' => $request->category,
+            'category_id' => $request->category,
             'capacity' => $request->capacity,
-            'organizer_id' => $user,
             'status' => $request->status,
+            'price' => $request->price,
         ]);
 
-        return to_route('dashboard')->with('success', 'Your event has been add successfully.');
+        return to_route('dashboard')->with('success', 'Your event has been modify successfully.');
     }
 
     /**

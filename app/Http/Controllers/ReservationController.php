@@ -35,9 +35,19 @@ class ReservationController extends Controller
     {
         $user = Auth::user()->id;
         $idEvent = $request->idEvent;
+
+            $existingReservation = Reservation::where('event_id', $idEvent)
+            ->where('user_id', $user)
+            ->first();
+
+        if ($existingReservation) {
+            return redirect()->route('index')->with('info', 'You have already made a reservation for this event.');
+        }
+
         $eventexe =  Event::where('id', $idEvent)
             ->where('status', 'pending')
             ->first();
+
         if ($eventexe) {
             $reservation = Reservation::create([
                 'event_id' => $idEvent,
@@ -56,10 +66,13 @@ class ReservationController extends Controller
                 'reservation_id' => $reservation->id,
                 'ticket' => $ticketId,
             ]);
+            $eventPrice = $request->price;
+            $userEmail = Auth::user()->email;
+            $userName = Auth::user()->name;
+            Mail::to($userEmail)->send(new ticketMail($userName, $ticketId, $eventPrice));
             $user = Auth::user()->name;
             $pdf = Pdf::loadView('ticket', ['tickets' => $ticket, 'users' => $user]);
             return $pdf->download('ticket.pdf');
-            // Mail::to()->send(new ticketMail());
         }
     }
 
@@ -84,12 +97,25 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $id = $request->idReservation;
+        $reservation = Reservation::findOrFail($id);
+        $reservation->update([
+            'status' => 'true'
+        ]);
+        $ticketId = uniqid();
+        $ticket = Ticket::created([
+            'reservation_id' => $reservation->id,
+            'ticket' => $ticketId,
+        ]);
+
+        $eventPrice = $request->price;
+        $userEmail = $request->email;
+        $userName = $request->nameUser;
+
+        Mail::to($userEmail)->send(new ticketMail($userName, $ticketId, $eventPrice));
+        return to_route('dashboard')->with('info', 'Your reservation event has been accepted.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Reservation $reservation)
     {
         //

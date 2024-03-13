@@ -14,12 +14,17 @@ class ticketMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $userName;
+    public $ticketId;
+    public $eventPrice;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($name, $ticket, $price)
     {
-        //
+        $this->userName = $name;
+        $this->ticketId = $ticket;
+        $this->eventPrice = $price;
     }
 
     /**
@@ -37,10 +42,14 @@ class ticketMail extends Mailable
      */
     public function content(): Content
     {
-        $body = Auth::user()->name;
+
         return new Content(
-            view: 'emails.inscription',
-            with: compact('body'),
+            view: 'tickets',
+            with: [
+                'userName' => $this->userName,
+                'ticketId' => $this->ticketId,
+                'eventPrice' => $this->eventPrice,
+            ],
 
         );
     }

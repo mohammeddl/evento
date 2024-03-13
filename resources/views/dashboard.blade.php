@@ -1,6 +1,7 @@
 <x-app-layout>
 @include('components.alert')
 @include('components.formEvent')
+@if(Auth::user()->organizer->status == 'true')
 <div class="bg-white flex w-full flex-row-reverse p-6">
     <button onclick="clickHidden()" class="  px-6 py-3 focus:outline-none mt-4  text-white bg-indigo-900 rounded-lg md:mt-0 md:mx-1 hover:bg-gray-600">
         <div class="flex items-center justify-center -mx-1">
@@ -11,7 +12,15 @@
         </div>
     </button>
 </div>
+@else
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-8 my-4" role="alert">
+    <strong class="font-bold">Banned</strong>
+    <span class="block sm:inline">you are banned from creating any events talk to support for more responses.</span>
+
+  </div>
+@endif
 @include('components.statsOrganizer')
+@include('components.list')
 @include('components.cardDashboard')
 
 </x-app-layout>

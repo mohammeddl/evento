@@ -25,9 +25,14 @@ class CategoryController extends Controller
 
     public function filter(Request $request)
     {
+        $event = Event::where('acceptation', 'accepted')->first();
         $categoryFromDB = Category::all();
-        $eventFromDB = Event::paginate(3)->where('acceptation', 'accepted')->where('category_id', $request->idCategory);
-        return view('index', ['eventFromDB' => $eventFromDB, 'categories' => $categoryFromDB]);
+        $eventFromDB = Event::where('acceptation', 'accepted')->where('category_id', $request->idCategory)->paginate(3);
+
+        // No need for appends() method call
+        // $eventFromDB->appends(['category' => $request->idCategory]);
+
+        return view('index', ['event' => $event, 'eventFromDB' => $eventFromDB, 'categories' => $categoryFromDB]);
     }
 
     public function update(Request $request)
@@ -43,7 +48,8 @@ class CategoryController extends Controller
         return to_route('category')->with('success', 'Your category has been modify successfully.');
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request)
+    {
         $category = Category::findOrFail($request->idCategory);
         $category->delete();
         return to_route('category')->with('success', 'Your category has been deleted successfully.');

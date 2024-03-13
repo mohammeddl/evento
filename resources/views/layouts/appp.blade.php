@@ -10,7 +10,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
-    <header class="box-border relative block w-full py-4 leading-10 text-center text-indigo-900 bg-white md:py-6">
+    <header class="hidden box-border relative md:block w-full py-4 leading-10 text-center text-indigo-900 bg-white md:py-6">
         <div class="w-full px-4 mx-auto leading-10 text-center md:px-4 lg:px-6 max-w-7xl">
             <div class="box-border flex flex-col flex-wrap items-center justify-between text-indigo-900 md:flex-row">
                 <div class="relative z-10 flex items-center w-auto px-4 leading-10 lg:flex-grow-0 lg:flex-shrink-0 lg:text-left">
@@ -180,14 +180,9 @@
                 '<div class="mt-6 flex justify-between">' +
                 '<div class="flex">' +
                 '<div class="flex-shrink-0">' +
-                '<a href="#">' +
-                '<span class="sr-only">User Name</span>' +
-                '<img class="h-10 w-10 rounded-full" src="' + result.title + '" alt="">' +
-                '</a>' +
                 '</div>' +
                 '<div class="ml-3">' +
                 '<p class="text-sm font-medium text-gray-900">' +
-                '<a href="#" class="hover:underline">' + result.id + '</a>' +
                 '</p>' +
                 '<div class="flex space-x-1 text-sm text-gray-500">' +
                 '<time datetime="' + result.created_at + '">' + '</time>' +
